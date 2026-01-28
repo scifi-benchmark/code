@@ -1,0 +1,66 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "scifi-benchmark"
+version = "0.1.0"
+description = "Evaluation tools for the SciFi-Benchmark dataset"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.9"
+authors = [
+    { name = "Pierre Sermanet" },
+    { name = "Anirudha Majumdar" },
+    { name = "Alex Irpan" },
+    { name = "Dmitry Kalashnikov" },
+    { name = "Vikas Sindhwani" },
+]
+keywords = ["benchmark", "robotics", "safety", "ethics", "llm", "evaluation"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "datasets>=2.14.0",
+    "huggingface-hub>=0.20.0",
+    "tqdm>=4.65.0",
+]
+
+[project.optional-dependencies]
+tfds = [
+    "tensorflow>=2.15.0",
+    "tensorflow-datasets>=4.9.0",
+    "gcsfs>=2024.1.0",
+]
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+]
+
+[project.scripts]
+scifi-eval = "src.cli:main"
+
+[project.urls]
+Homepage = "https://scifi-benchmark.github.io/"
+Repository = "https://github.com/scifi-benchmark/code"
+Paper = "https://arxiv.org/abs/2503.10706"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.black]
+line-length = 100
+target-version = ["py39"]
